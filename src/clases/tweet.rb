@@ -1,3 +1,12 @@
 class Tweet
-  # To change this template use File | Settings | File Templates.
+  attr_accessor :texto, :usuario
+
+  def initialize(texto, usuario)
+    @texto = texto
+    @usuario = usuario
+  end
+
+  def to_s
+    "El usuario @" + @usuario + "publico:\n" + @texto
+    end
 end
