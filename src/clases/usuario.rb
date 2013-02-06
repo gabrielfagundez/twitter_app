@@ -1,13 +1,25 @@
-class Usuario
-  attr_accessor :nombre_usuario, :nombre, :descripcion
 
-  def initialize(nombre_usuario, nombre, descripcion)
-    @nombre_usuario = nombre_usuario
-    @nombre = nombre
-    @descripcion = descripcion
+class Usuario
+  attr_accessor :nombre_usuario, :nombre, :descripcion, :followers
+
+  def initialize
+    @nombre_usuario = ""
+    @nombre = ""
+    @descripcion = ""
+    @followers = ""
+  end
+
+  def intialize_from_json(json)
+    @nombre_usuario = json["screen_name"]
+    @nombre = json["name"]
+    @descripcion = json["description"]
+    @followers = json["followers_count"]
   end
 
   def to_s
-    "El usuario identificado como @" + @nombre_usuario + " se llama " + @nombre + " y posee como descripcion en su cuenta de Twitter " + @descripcion + "."
+    "Informacion del usuario @" + @nombre_usuario +
+        "\n  Nombre: " + @nombre +
+        "\n  Cantidad de seguidores: " + @followers.to_s +
+        "\n  Descripcion: " + @descripcion
   end
 end
