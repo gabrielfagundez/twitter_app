@@ -6,7 +6,7 @@ class Trend
     @url = url
   end
 
-  def initialize_from_json(json)
+  def self.initialize_from_json(json)
     a = Array.new
 
     # Recorro las trends, creo instancias de la clase y las agrego al arreglo

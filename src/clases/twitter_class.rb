@@ -31,8 +31,7 @@ class Twitter
         raise Exception, 'No se pueden obtener las trends'
     end
 
-    t = Trend.new
-    arreglo_trends = t.initialize_from_json(trends)
+    Trend.initialize_from_json(trends)
   end
 
 
@@ -43,10 +42,14 @@ class Twitter
 
     res = ""
     response = Net::HTTP.get_response(URL_BUSQUEDA, url)
-    res = JSON.parse(response.body)["results"]
+    case response
+      when Net::HTTPSuccess then
+        res = JSON.parse(response.body)["results"]
+      else
+        raise Exception, 'No se pueden obtener los tweets'
+    end
 
-    t = Tweet.new
-    arreglo_tweets = t.initialize_from_json(res)
+    Tweet.initialize_from_json(res)
   end
 
 
